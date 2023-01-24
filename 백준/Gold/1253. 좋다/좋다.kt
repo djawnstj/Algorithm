@@ -14,19 +14,19 @@ fun main() {
 
     var result = 0
 
-    for (k in 0 until N) {
-        val find = arr[k]
-        var i = 0
-        var j = N - 1
-        while (i < j) {
-            if (arr[i] + arr[j] == find) {
-                if (i != k && j != k) {
+    for (i in 0 until N) {
+        val find = arr[i]
+        lt = 0
+        rt = N - 1
+        while (lt < rt) {
+            if (arr[lt] + arr[rt] == find) {
+                if (lt != i && rt != i) {
                     result++
                     break
-                } else if (i == k) i++
-                else if (j == k) j--
-            } else if (arr[i] + arr[j] < find) i++
-            else j--
+                } else if (lt == i) lt++
+                else if (rt == i) rt--
+            } else if (arr[lt] + arr[rt] < find) lt++
+            else rt--
         }
     }
 
