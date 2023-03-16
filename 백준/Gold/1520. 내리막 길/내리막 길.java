@@ -9,7 +9,6 @@ public class Main {
     static int[][] arr;
     static int[][] ch;
     static int answer;
-
     static int[] dis = {-1, 1};
 
     public static void main(String[] args) throws IOException {
@@ -33,30 +32,13 @@ public class Main {
 
         answer = DFS(0, 0, m, n);
 
-//        System.out.println();
-//        for (int[] ints : ch) {
-//            for (int anInt : ints) {
-//                System.out.print(anInt + " ");
-//            }
-//            System.out.println();
-//        }
-//        System.out.println();
-
         System.out.println(answer);
 
     }
 
     public static int DFS(int x, int y, int limitX, int limitY) {
-        if (x == limitX - 1 && y == limitY - 1) {
-            return 1;
-        }
-//        else if (ch[y][x] == 1) {
-//            answer++;
-//            return true;
-//        }
-//        else if (ch[y][x] == 2) return false;
-
-        if (ch[y][x] != -1) return ch[y][x];
+        if (x == limitX - 1 && y == limitY - 1) return 1;
+        else if (ch[y][x] != -1) return ch[y][x];
 
         ch[y][x] = 0;
 
@@ -69,10 +51,6 @@ public class Main {
             if (newY >= 0 && newY < limitY && arr[y][x] > arr[newY][x]) ch[y][x] += DFS(x, newY, limitX, limitY);
 
         }
-
-//        System.out.println("x: " + x + ", y: " + y + ", result: " + result + ", answer: " + answer);
-
-//        if (ch[y][x] == 0) ch[y][x] = -1;
 
         return ch[y][x];
     }
