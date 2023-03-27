@@ -19,7 +19,6 @@ public class Main {
     }
 
     private static void test(StringTokenizer st, BufferedReader br) throws IOException {
-//        System.out.println();
         st = new StringTokenizer(br.readLine());
 
         int n = Integer.parseInt(st.nextToken());
@@ -35,10 +34,6 @@ public class Main {
 
         int answer = 1;
         int maxDocument = arr.get(0).document;
-
-        for (Applicant a : arr) {
-//            System.out.println("document: " + a.document + ", interview: " + a.interview);
-        }
 
         for (int i = 1; i < n; i++) {
             if (maxDocument > arr.get(i).document) {
@@ -68,3 +63,4 @@ public class Main {
     }
 
 }
+
