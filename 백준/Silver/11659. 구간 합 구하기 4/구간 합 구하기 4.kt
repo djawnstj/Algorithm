@@ -1,23 +1,36 @@
-import java.util.Scanner
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.util.*
 
 fun main() {
-    val sc = Scanner(System.`in`)
 
-    val num = sc.nextInt()
-    val q = sc.nextInt()
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    var st = StringTokenizer(br.readLine())
 
-    val arr = IntArray(num)
-    val sumArr = IntArray(num+1)
+    val n = st.nextInt()
+    val m = st.nextInt()
 
-    for (i in 0 until num) {
-        arr[i] = sc.nextInt()
+    st = StringTokenizer(br.readLine())
+
+    val arr = IntArray(n)
+    val sumArr = IntArray(n + 1)
+
+    for (i in 0 until n) {
+        arr[i] = st.nextInt()
         sumArr[i+1] = sumArr[i] + arr[i]
     }
 
-    for (i in 0 until q) {
-        val start = sc.nextInt() - 1
-        val end = sc.nextInt()
-        println(sumArr[end] - sumArr[start])
+
+    for (i in 0 until m) {
+        st = StringTokenizer(br.readLine())
+
+        val i = st.nextInt() - 1
+        val j = st.nextInt()
+
+        println(sumArr[j] - sumArr[i])
     }
 
 }
+
+fun StringTokenizer.nextInt(): Int = nextToken().toInt()
+
