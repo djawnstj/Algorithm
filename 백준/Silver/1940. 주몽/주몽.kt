@@ -1,35 +1,39 @@
-import java.util.Arrays
-import java.util.Scanner
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.util.StringTokenizer
 
 fun main() {
-    val sc = Scanner(System.`in`)
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    var st = StringTokenizer(br.readLine())
 
-    val N = sc.nextInt()
-    val M = sc.nextInt()
+    val n = st.nextInt()
 
-    val arr = IntArray(N)
+    st = StringTokenizer(br.readLine())
 
-    for (i in 0 until N) arr[i] = sc.nextInt()
+    val m = st.nextInt()
 
-    Arrays.sort(arr)
+    st = StringTokenizer(br.readLine())
 
-    var lt = 0
-    var rt = arr.size - 1
+    val arr = IntArray(n) { st.nextInt() }.sortedArray()
 
     var result = 0
 
-    while (lt < rt) {
-        val sum = arr[lt] + arr[rt]
-        if (sum < M) lt++
-        else if (sum > M) rt--
+    var l = 0
+    var r = n - 1
+
+    while (l < r) {
+        val sum = arr[l] + arr[r]
+
+        if (sum < m) l++
+        else if (sum > m) r--
         else {
             result++
-            lt++
-            rt--
+            l++
+            r--
         }
     }
 
     println(result)
-
 }
 
+fun StringTokenizer.nextInt() = nextToken().toInt()
