@@ -1,41 +1,34 @@
-import java.util.Scanner
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.util.StringTokenizer
 
 fun main() {
-    val sc = Scanner(System.`in`)
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    var st = StringTokenizer(br.readLine())
 
-    val num = sc.nextInt()
+    val n = st.nextInt()
 
-    var lt = 1
-    var rt = 1
+    var result = 1
 
-    var sum = 0
-    var result = 0
+    var l = 1
+    var r = 1
+    var sum = 1
 
-    while (lt <= num) {
-        sum += rt
-        if (sum >= num) {
-            if (sum == num) result++
-            lt++
-            sum = 0
-            rt = lt
+    while (r < n) {
+        if (sum == n) {
+            result++
+            r++
+            sum += r
+        } else if (sum > n) {
+            sum -= l
+            l ++
+        } else {
+            r++
+            sum += r
         }
-        else rt++
     }
 
-//    for (i in 1 .. num) {
-//        val lt = i
-//        var temp = 0
-//        for (j in i .. num) {
-//            temp += j
-//            if (temp > num) break
-//            else if (temp == num) {
-//                result++
-//                break
-//            }
-//        }
-//    }
-
     println(result)
-
 }
 
+fun StringTokenizer.nextInt() = nextToken().toInt()
