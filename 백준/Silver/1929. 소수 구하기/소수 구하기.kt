@@ -8,18 +8,23 @@ fun main() {
     val m = st.nextInt()
     val n = st.nextInt()
 
-    val arr = Array(n + 1) { true }
+    val arr = IntArray(n + 1)
 
     for (i in 2 .. n) {
-        if (!arr[i]) continue
-        else if (i >= m) println(i)
+        arr[i] = i
+    }
 
-        var temp = i
+    for (i in 2 ..Math.sqrt(n.toDouble()).toInt()) {
+        if (arr[i] == 0) continue
 
-        while (temp <= n) {
-            arr[temp] = false
-            temp += i
+        for (j in i+i .. n step i) {
+            arr[j] = 0
         }
+    }
+
+    for (i in m .. n) {
+        if (arr[i] == 0) continue
+        println(arr[i])
     }
 }
 
