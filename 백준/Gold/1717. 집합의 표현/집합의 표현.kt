@@ -1,49 +1,46 @@
 import java.util.*
+import java.io.*
 
-lateinit var parent: IntArray
+fun main() {
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    var st = StringTokenizer(br.readLine())
 
-fun main(args: Array<String>) {
-    val sc = Scanner(System.`in`)
-    val n = sc.nextInt()
-    val m = sc.nextInt()
-    parent = IntArray(n + 1)
-    for (i in 0..n) {
-        parent[i] = i
-    }
+    val n = st.nextInt()
+    val m = st.nextInt()
+
+    val arr = IntArray(n + 1) { it }
+
     for (i in 0 until m) {
-        val q = sc.nextInt()
-        val a = sc.nextInt()
-        val b = sc.nextInt()
-        if (q == 0) {
-            union(a, b)
-        } else {
-            if (checkSame(a, b)) {
-                println("YES")
-            } else {
-                println("NO")
-            }
-        }
+        st = StringTokenizer(br.readLine())
+
+        val operator = st.nextInt()
+        val a = st.nextInt()
+        val b = st.nextInt()
+
+        if (operator == 0) union(arr, a, b)
+        else println(check(arr, a, b))
     }
 }
 
-fun union(a: Int, b: Int) {
-    var a = a
-    var b = b
-    a = find(a)
-    b = find(b)
-    if (a != b) {
-        parent[b] = a
-    }
+fun union(arr: IntArray, a: Int, b: Int) {
+    val rootA = find(arr, a)
+    val rootB = find(arr, b)
+
+    if (rootA != rootB) arr[rootB] = rootA
 }
 
-fun find(a: Int): Int {
-    return if (a == parent[a]) a else find(parent[a]).also { parent[a] = it }
+fun check(arr: IntArray, a: Int, b: Int): String {
+    val rootA = find(arr, a)
+    val rootB = find(arr, b)
+
+    return if (rootA == rootB) "YES" else "NO"
 }
 
-fun checkSame(a: Int, b: Int): Boolean {
-    var a = a
-    var b = b
-    a = find(a)
-    b = find(b)
-    return a == b
+fun find(arr: IntArray, num: Int): Int {
+    val found = arr[num]
+    if (found == num) return found
+
+    return find(arr, found).also { arr[num] = it }
 }
+
+private fun StringTokenizer.nextInt(): Int = nextToken().toInt()
