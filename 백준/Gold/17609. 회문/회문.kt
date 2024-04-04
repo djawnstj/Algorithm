@@ -1,40 +1,6 @@
 import java.util.*
 import java.io.*
 
-/*
-1
-xyyyyxy
-
-1
-
-
-1
-abca
-
-1
-
-1
-abc
-
-2
-
-
-6
-aba
-abba
-abac
-caba
-acbccba
-abccbca
-
-0
-0
-1
-1
-1
-1
- */
-
 fun main() {
     val br = BufferedReader(InputStreamReader(System.`in`))
     var st = StringTokenizer(br.readLine())
