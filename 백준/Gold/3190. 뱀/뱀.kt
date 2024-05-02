@@ -35,12 +35,6 @@ fun main() {
     var result = 0
     var direction = Direction.RIGHT
 
-//    apples.joinToString(separator = "\n", transform = {
-//        it.joinToString(separator = " ", transform = { apple ->
-//            if (apple) "[x]" else "[ ]"
-//        })
-//    }).println()
-
     bam.add(Bam(0, 0))
 
     while (true) {
@@ -48,14 +42,9 @@ fun main() {
 
         val directionChange = directionChanges.peek()
 
-//        println("---------------------------------------")
-//        println("time: $result, direction: $direction, directionChange: $directionChange(${directionChange != null && directionChange.time == result})")
-
         val head = bam.peekFirst()
         val nextHead = head.next(direction)
 
-//        println("head: $head, nextHead: $nextHead")
-//        println("meetSelf: ${bam.contains(nextHead)}, meetWall: ${nextHead.checkCrush(n)}")
         if (bam.contains(nextHead)) break
         if (nextHead.checkCrush(n)) break
 
@@ -63,17 +52,6 @@ fun main() {
 
         if (!apples[nextHead.x][nextHead.y]) bam.pollLast()
         else apples[nextHead.x][nextHead.y] = false
-
-//        println("bam: ${bam.size}")
-//        repeat(n) { x ->
-//            val sb = StringBuilder()
-//            repeat(n) { y ->
-//                val s = if (bam.contains(Bam(x, y))) "[x]" else "[ ]"
-//                sb.append(s)
-//            }
-//            sb.toString().println()
-//        }
-//        println("---------------------------------------")
 
         if (directionChange != null && directionChange.time == result) {
             direction = direction.rotate(directionChange.direction)
